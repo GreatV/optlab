@@ -12,10 +12,15 @@ OCR前处理工具箱，基于Qt和Leptonica。
 - [x] 去噪
 - [x] 膨胀
 - [x] 腐蚀
-- [] 扫描文档边缘识别
-- [] 命令行模式
+- [ ] 扫描文档边缘识别
+- [ ] 命令行模式
 
 ## 演示
 
 ### 图片反色
 
+![](https://github.com/GreatV/optlab/raw/main/docs/images/1_0.png)
+
+![](https://github.com/GreatV/optlab/raw/main/docs/images/1_1.png)
+
+![](https://github.com/GreatV/optlab/raw/main/docs/images/1_2.png)
