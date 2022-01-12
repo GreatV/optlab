@@ -10,6 +10,7 @@
 #include <QtWidgets/QMessageBox>
 
 #include <leptonica/allheaders.h>
+#include <avir.h>
 
 
 static PIX* QImage2PIX(QImage& src_image)
@@ -257,17 +258,29 @@ void app::on_rescaling_push_button_clicked()
 	{
 		return;
 	}
-	float width_factor = ui_->set_width_factor_line_edit->text().toFloat();
-	float height_factor = ui_->set_height_factor_line_edit->text().toFloat();
 
-	auto src_image = QImage2PIX(image_);
-	auto dst_image = pixScale(src_image, height_factor, width_factor);
+	float x_factor = ui_->set_width_factor_line_edit->text().toFloat();
+	float y_factor = ui_->set_height_factor_line_edit->text().toFloat();
 
-	image_ = PIX2QImage(dst_image);
+	const int width = image_.width();
+	const int height = image_.height();
+	const int scan_line_size = image_.bytesPerLine();
+	const int depth = image_.depth();
+
+	const int new_width = x_factor * width;
+	const int new_height = y_factor * height;
+
+
+	QImage dst_image(new_width, new_height, image_.format());
+	dst_image.fill(0);
+
+	avir::CImageResizer<> image_resizer(depth, depth);
+	image_resizer.resizeImage(image_.bits(), width, height, scan_line_size,
+	                          dst_image.bits(), new_width, new_height,
+	                          depth / 8, 0);
+
+	image_ = dst_image;
 	ui_->image_label->setPixmap(QPixmap::fromImage(image_));
-
-	pixDestroy(&src_image);
-	pixDestroy(&dst_image);
 }
 
 void app::on_binarisation_push_button_clicked()
