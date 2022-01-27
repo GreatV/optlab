@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>binarization_operation_dialog</class>
+ <widget class="QDialog" name="binarization_operation_dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>二值化</string>
+  </property>
+  <layout class="QGridLayout" name="binarization_dialog_main_grid_layout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="ops_tab_widget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="global_binarization_tab">
+      <attribute name="title">
+       <string>全局阈值方法</string>
+      </attribute>
+      <widget class="QLineEdit" name="fixed_threshold_line_edit">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>50</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="fixed_threshold_radio_button">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>50</y>
+         <width>72</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>固定阈值方法</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="otsu_radio_button">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>100</y>
+         <width>126</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>最大类间方差方法（Otsu）</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="global_binarization_push_button">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>210</y>
+         <width>56</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>计算</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="local_binarization_tab">
+      <attribute name="title">
+       <string>局部阈值方法</string>
+      </attribute>
+      <widget class="QRadioButton" name="adaptive_threshold_radio_button">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>40</y>
+         <width>68</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>自适应阈值</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="niblack_radio_button">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>100</y>
+         <width>68</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Niblack算法</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="sauvola_radio_button">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>160</y>
+         <width>68</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Sauvola算法</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="local_binarization_push_button">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>210</y>
+         <width>56</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>计算</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
