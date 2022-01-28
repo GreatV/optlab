@@ -99,6 +99,7 @@
     <QtMoc Include="app.h" />
     <ClCompile Include="app.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="binarization.ui" />
   </ItemGroup>
   <ItemGroup>
     <None Include="qt.conf" />

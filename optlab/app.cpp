@@ -92,6 +92,52 @@ static QImage PIX2QImage(PIX* src_image)
 }
 
 
+binarization_operation::binarization_operation(QImage image, QWidget* parent)
+	: QDialog(parent),
+	  image_(image),
+	  ui_(new Ui::binarization_operation_dialog)
+{
+	ui_->setupUi(this);
+
+	QObject::connect(
+		ui_->local_binarization_push_button,
+		SIGNAL(clicked()),
+		this,
+		SLOT(on_local_binarization_push_button_clicked())
+	);
+}
+
+binarization_operation::~binarization_operation()
+{
+	delete ui_;
+}
+
+void binarization_operation::on_local_binarization_push_button_clicked()
+{
+	if (ui_->sauvola_radio_button->isChecked())
+	{
+		qDebug() << "Binarisation Image";
+		if (image_.isNull())
+		{
+			return;
+		}
+		QImage img = image_.convertToFormat(QImage::Format_Grayscale8);
+		auto src_image = QImage2PIX(img);
+		l_int32 w, h;
+		PIX* dst_image = nullptr;
+		pixGetDimensions(src_image, &w, &h, nullptr);
+		pixSauvolaBinarize(src_image, 7, 0.34f, 1, nullptr, nullptr, nullptr, &dst_image);
+
+		image_ = PIX2QImage(dst_image);
+
+		pixDestroy(&src_image);
+		pixDestroy(&dst_image);
+
+		emit(export_image(image_));
+	}
+}
+
+
 app::app(QWidget* parent)
 	: QMainWindow(parent),
 	  ui_(new Ui::app),
@@ -285,23 +331,9 @@ void app::on_rescaling_push_button_clicked()
 
 void app::on_binarisation_push_button_clicked()
 {
-	qDebug() << "Binarisation Image";
-	if (image_.isNull())
-	{
-		return;
-	}
-	QImage img = image_.convertToFormat(QImage::Format_Grayscale8);
-	auto src_image = QImage2PIX(img);
-	l_int32 w, h;
-	PIX* dst_image = nullptr;
-	pixGetDimensions(src_image, &w, &h, nullptr);
-	pixSauvolaBinarize(src_image, 7, 0.34f, 1, nullptr, nullptr, nullptr, &dst_image);
-
-	image_ = PIX2QImage(dst_image);
-	ui_->image_label->setPixmap(QPixmap::fromImage(image_));
-
-	pixDestroy(&src_image);
-	pixDestroy(&dst_image);
+	binarization_operation binarization_dialog(image_, this);
+	QObject::connect(&binarization_dialog, SIGNAL(export_image(QImage)), this, SLOT(receive_image(QImage)));
+	binarization_dialog.exec();
 }
 
 void app::on_deskew_push_button_clicked()
@@ -608,4 +640,10 @@ void app::on_scanning_border_removal_push_button_clicked()
 
 	//pixDestroy(&src_image);
 	//pixDestroy(&gray_image);
+}
+
+void app::receive_image(QImage image)
+{
+	image_ = image;
+	ui_->image_label->setPixmap(QPixmap::fromImage(image_));
 }

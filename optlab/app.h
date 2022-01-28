@@ -1,9 +1,31 @@
 #pragma once
 
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QMainWindow>
 #include <QtGui/QImage>
 
 #include "ui_app.h"
+#include "ui_binarization.h"
+
+
+class binarization_operation : public QDialog
+{
+	Q_OBJECT
+
+public:
+	explicit binarization_operation(QImage image, QWidget *parent = Q_NULLPTR);
+	~binarization_operation() override;
+
+private:
+	QImage image_;
+	Ui::binarization_operation_dialog* ui_;
+
+private slots:
+	void on_local_binarization_push_button_clicked();
+
+signals:
+	void export_image(QImage);
+};
 
 
 class app final : public QMainWindow
@@ -38,4 +60,6 @@ private slots:
 	void on_dilation_push_button_clicked();
 	void on_erosion_push_button_clicked();
 	void on_scanning_border_removal_push_button_clicked();
+
+	void receive_image(QImage image);
 };

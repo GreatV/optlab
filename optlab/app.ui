@@ -284,7 +284,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>280</y>
+         <y>310</y>
          <width>135</width>
          <height>60</height>
         </rect>
@@ -309,8 +309,8 @@
       <widget class="QGroupBox" name="deskew_group_box">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>340</y>
+         <x>20</x>
+         <y>400</y>
          <width>115</width>
          <height>60</height>
         </rect>
@@ -336,7 +336,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>410</y>
+         <y>480</y>
          <width>135</width>
          <height>60</height>
         </rect>
@@ -362,7 +362,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>480</y>
+         <y>570</y>
          <width>120</width>
          <height>80</height>
         </rect>
@@ -401,7 +401,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>570</y>
+         <y>660</y>
          <width>115</width>
          <height>60</height>
         </rect>
