@@ -347,7 +347,7 @@ void app::on_deskew_push_button_clicked()
 
 	l_float32 angle, conf;
 	auto src_image = QImage2PIX(image_);
-	auto dst_image = pixDeskewGeneral(src_image, 0, DEFAULT_SWEEP_RANGE, 0.0, 0, 0, &angle, &conf);
+	auto dst_image = pixDeskewGeneral(src_image, 0, DEFAULT_SWEEP_RANGE, 1.0, 0, 0, &angle, &conf);
 
 	image_ = PIX2QImage(dst_image);
 	ui_->image_label->setPixmap(QPixmap::fromImage(image_));
