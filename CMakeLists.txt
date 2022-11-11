@@ -14,6 +14,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
+find_package(Leptonica CONFIG REQUIRED)
+
 set(TS_FILES optlab_zh_CN.ts)
 
 set(PROJECT_SOURCES
@@ -51,7 +53,10 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(optlab PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(optlab
+    PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
+    PRIVATE leptonica
+)
 
 set_target_properties(optlab PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
