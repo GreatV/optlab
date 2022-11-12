@@ -15,6 +15,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
 find_package(Leptonica CONFIG REQUIRED)
+find_package(OpenCV CONFIG REQUIRED)
 
 set(TS_FILES optlab_zh_CN.ts)
 
@@ -56,6 +57,7 @@ endif()
 target_link_libraries(optlab
     PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
     PRIVATE leptonica
+    PRIVATE opencv_ml tegra_hal opencv_dnn opencv_core
 )
 
 set_target_properties(optlab PROPERTIES
