@@ -57,7 +57,7 @@ endif()
 target_link_libraries(optlab
     PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
     PRIVATE leptonica
-    PRIVATE opencv_ml tegra_hal opencv_dnn opencv_core
+    PRIVATE opencv_ml opencv_dnn opencv_core
 )
 
 set_target_properties(optlab PROPERTIES
