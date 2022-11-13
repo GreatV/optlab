@@ -1,4 +1,5 @@
-#include "app.h"
+#include "optlabapp.h"
+#include "./ui_optlabapp.h"
 
 #include <QtCore/QDebug>
 #include <QtGui/QImageReader>
@@ -138,27 +139,27 @@ void binarization_operation::on_local_binarization_push_button_clicked()
 }
 
 
-app::app(QWidget* parent)
+OptLabApp::OptLabApp(QWidget* parent)
 	: QMainWindow(parent),
-	  ui_(new Ui::app),
+	  ui_(new Ui::OptLabApp),
 	  current_image_file_name_(""),
 	  scale_factor_(1.0)
 {
 	ui_->setupUi(this);
 }
 
-app::~app()
+OptLabApp::~OptLabApp()
 {
 	delete ui_;
 }
 
-void app::setup_app_ui()
+void OptLabApp::setup_app_ui()
 {
 	ui_->image_label->setScaledContents(true);
 	this->resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
 }
 
-bool app::load_file(const QString& file_name)
+bool OptLabApp::load_file(const QString& file_name)
 {
 	QImageReader reader(file_name);
 	reader.setAutoTransform(true);
@@ -167,7 +168,7 @@ bool app::load_file(const QString& file_name)
 	{
 		QMessageBox::information(this,
 		                         QGuiApplication::applicationDisplayName(),
-		                         tr(u8"ÎÞ·¨ÔØÈëÍ¼Æ¬ %1: %2")
+		                         tr(u8"æ— æ³•è½½å…¥å›¾ç‰‡ %1: %2")
 		                         .arg(QDir::toNativeSeparators(file_name), reader.errorString()));
 		return false;
 	}
@@ -176,69 +177,68 @@ bool app::load_file(const QString& file_name)
 
 	this->setWindowFilePath(file_name);
 
-	const QString message = tr(u8"´ò¿ªÎÄ¼þ \"%1\"\t·Ö±æÂÊ %2x%3\tÎ»Éî¶È %4")
+	const QString message = tr(u8"æ‰“å¼€æ–‡ä»¶ \"%1\"\tåˆ†è¾¨çŽ‡ %2x%3\tä½æ·±åº¦ %4")
 	                        .arg(QDir::toNativeSeparators(file_name))
 	                        .arg(image_.width()).arg(image_.height()).arg(image_.depth());
 	ui_->status_bar->showMessage(message);
 	return true;
 }
 
-void app::set_image(const QImage& new_image)
+void OptLabApp::set_image(const QImage& new_image)
 {
 	image_ = new_image;
 	ui_->image_label->setPixmap(QPixmap::fromImage(image_));
-	Q_ASSERT(ui_->image_label->pixmap());
 	scale_factor_ = 1.0;
 }
 
-bool app::save_file(const QString& file_name)
+bool OptLabApp::save_file(const QString& file_name)
 {
 	QImageWriter writer(file_name);
 
 	if (!writer.write(image_))
 	{
 		QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
-		                         tr(u8"ÎÞ·¨±£´æ %1: %2")
+		                         tr(u8"æ— æ³•ä¿å­˜ %1: %2")
 		                         .arg(QDir::toNativeSeparators(file_name)), writer.errorString());
 		return false;
 	}
-	const QString message = tr(u8"ÒÑ±£´æ \"%1\"").arg(QDir::toNativeSeparators(file_name));
+	const QString message = tr(u8"å·²ä¿å­˜ \"%1\"").arg(QDir::toNativeSeparators(file_name));
 	ui_->status_bar->showMessage(message);
 	return true;
 }
 
-void app::on_action_open_triggered()
+void OptLabApp::on_action_open_triggered()
 {
 	current_image_file_name_ = QFileDialog::getOpenFileName(this,
-	                                                        tr(u8"´ò¿ªÎÄ¼þ"),
+	                                                        tr(u8"æ‰“å¼€æ–‡ä»¶"),
 	                                                        "",
-	                                                        tr(u8"Í¼ÏñÎÄ¼þ (*.png;*.jpg;*.jpeg)"));
-	qDebug() << u8"ÕýÔÚ´ò¿ªÎÄ¼þ" << current_image_file_name_;
+	                                                        tr(u8"å›¾åƒæ–‡ä»¶ (*.png;*.jpg;*.jpeg)"));
+	qDebug() << u8"æ­£åœ¨æ‰“å¼€æ–‡ä»¶" << current_image_file_name_;
 	load_file(current_image_file_name_);
 }
 
-void app::on_action_save_triggered()
+void OptLabApp::on_action_save_triggered()
 {
 	const QString image_file_name = current_image_file_name_;
-	qDebug() << u8"ÕýÔÚ±£´æÎÄ¼þ" << image_file_name;
+	qDebug() << u8"æ­£åœ¨ä¿å­˜æ–‡ä»¶" << image_file_name;
 
 	if (!image_file_name.isNull() || !image_file_name.isEmpty())
 		save_file(image_file_name);
 }
 
-void app::on_action_save_as_triggered()
+void OptLabApp::on_action_save_as_triggered()
 {
 	const QString image_file_name = QFileDialog::getSaveFileName(this,
-	                                                             tr(u8"±£´æÎÄ¼þ"),
+	                                                             tr(u8"ä¿å­˜æ–‡ä»¶"),
 	                                                             "",
-	                                                             tr(u8"Í¼ÏñÎÄ¼þ (*.png;*.jpg;*.jpeg)"));
-	qDebug() << u8"ÕýÔÚ±£´æÎÄ¼þ" << image_file_name;
+	                                                             tr(u8"å›¾åƒæ–‡ä»¶ (*.png;*.jpg;*.jpeg)"));
+	qDebug() << u8"æ­£åœ¨ä¿å­˜æ–‡ä»¶" << image_file_name;
 
 	if (!image_file_name.isNull() || !image_file_name.isEmpty())
 		save_file(image_file_name);
 }
 
-void app::on_inverting_push_button_clicked()
+void OptLabApp::on_inverting_push_button_clicked()
 {
 	qDebug() << "Inverting Image";
 	if (image_.isNull())
@@ -258,7 +258,7 @@ void app::on_inverting_push_button_clicked()
 	pixDestroy(&dst_image);
 }
 
-void app::on_rotate_it_push_button_clicked()
+void OptLabApp::on_rotate_it_push_button_clicked()
 {
 	const float deg2rad = 3.1415926535f / 180.f;
 	float angle = ui_->set_angle_line_edit->text().toFloat();
@@ -297,7 +297,7 @@ void app::on_rotate_it_push_button_clicked()
 	pixDestroy(&dst_image);
 }
 
-void app::on_rescaling_push_button_clicked()
+void OptLabApp::on_rescaling_push_button_clicked()
 {
 	qDebug() << "Rescaling Image";
 	if (image_.isNull())
@@ -329,14 +329,14 @@ void app::on_rescaling_push_button_clicked()
 	ui_->image_label->setPixmap(QPixmap::fromImage(image_));
 }
 
-void app::on_binarisation_push_button_clicked()
+void OptLabApp::on_binarisation_push_button_clicked()
 {
 	binarization_operation binarization_dialog(image_, this);
 	QObject::connect(&binarization_dialog, SIGNAL(export_image(QImage)), this, SLOT(receive_image(QImage)));
 	binarization_dialog.exec();
 }
 
-void app::on_deskew_push_button_clicked()
+void OptLabApp::on_deskew_push_button_clicked()
 {
 	static const l_float32  DEFAULT_SWEEP_RANGE = 90.;
 	qDebug() << "Deskew Image";
@@ -356,7 +356,7 @@ void app::on_deskew_push_button_clicked()
 	pixDestroy(&dst_image);
 }
 
-void app::on_despeckle_push_button_clicked()
+void OptLabApp::on_despeckle_push_button_clicked()
 {
 	qDebug() << "Despeckle Image";
 	if (image_.isNull())
@@ -406,7 +406,7 @@ void app::on_despeckle_push_button_clicked()
 
 }
 
-void app::on_dilation_push_button_clicked()
+void OptLabApp::on_dilation_push_button_clicked()
 {
 	qDebug() << "Dilation";
 	if (image_.isNull())
@@ -432,7 +432,7 @@ void app::on_dilation_push_button_clicked()
 	pixDestroy(&dst_image);
 }
 
-void app::on_erosion_push_button_clicked()
+void OptLabApp::on_erosion_push_button_clicked()
 {
 	qDebug() << "Erosion";
 	if (image_.isNull())
@@ -588,7 +588,7 @@ GetRightCut(NUMA* narl,
 	return 0;
 }
 
-void app::on_scanning_border_removal_push_button_clicked()
+void OptLabApp::on_scanning_border_removal_push_button_clicked()
 {
 	static const l_int32  mindif = 60;
 
@@ -642,7 +642,7 @@ void app::on_scanning_border_removal_push_button_clicked()
 	//pixDestroy(&gray_image);
 }
 
-void app::receive_image(QImage image)
+void OptLabApp::receive_image(QImage image)
 {
 	image_ = image;
 	ui_->image_label->setPixmap(QPixmap::fromImage(image_));

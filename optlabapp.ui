@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>app</class>
- <widget class="QMainWindow" name="app">
+ <class>OptLabApp</class>
+ <widget class="QMainWindow" name="OptLabApp">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -68,7 +68,7 @@
             <x>0</x>
             <y>0</y>
             <width>822</width>
-            <height>730</height>
+            <height>727</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -433,7 +433,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>18</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="men_file">
@@ -476,8 +476,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="app.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

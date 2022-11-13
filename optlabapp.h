@@ -1,12 +1,14 @@
-#pragma once
+#ifndef OPTLABAPP_H
+#define OPTLABAPP_H
 
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QMainWindow>
-#include <QtGui/QImage>
+#include <QDialog>
+#include <QMainWindow>
 
-#include "ui_app.h"
-#include "ui_binarization.h"
+#include "./ui_binarization.h"
 
+QT_BEGIN_NAMESPACE
+namespace Ui { class OptLabApp; class binarization_operation_dialog;}
+QT_END_NAMESPACE
 
 class binarization_operation : public QDialog
 {
@@ -28,13 +30,13 @@ signals:
 };
 
 
-class app final : public QMainWindow
+class OptLabApp final : public QMainWindow
 {
 Q_OBJECT
 
 public:
-	explicit app(QWidget* parent = Q_NULLPTR);
-	~app() override;
+	explicit OptLabApp(QWidget* parent = Q_NULLPTR);
+	~OptLabApp() override;
 
 private:
 	void setup_app_ui();
@@ -42,7 +44,7 @@ private:
 	void set_image(const QImage& new_image);
 	bool save_file(const QString& file_name);
 
-	Ui::app* ui_;
+	Ui::OptLabApp* ui_;
 	QImage image_;
 	QString current_image_file_name_;
 	double scale_factor_;
@@ -63,3 +65,5 @@ private slots:
 
 	void receive_image(QImage image);
 };
+
+#endif // OPTLABAPP_H
