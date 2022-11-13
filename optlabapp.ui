@@ -6,17 +6,476 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>OptLabApp</string>
+   <string>OPTLAB</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QWidget" name="central_widget">
+   <layout class="QGridLayout" name="main_grid_layout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="1">
+     <widget class="QWidget" name="display_widget" native="true">
+      <layout class="QGridLayout" name="display_grid_layout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QScrollArea" name="scroll_area">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <widget class="QWidget" name="scroll_area_widget_contents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>822</width>
+            <height>727</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="image_label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QWidget" name="operator_widget" native="true">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <widget class="QGroupBox" name="inverting_group_box">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>118</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>1.反色</string>
+       </property>
+       <widget class="QPushButton" name="inverting_push_button">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>75</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>反色</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="rotate_group_box">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>140</width>
+         <height>93</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>2.旋转</string>
+       </property>
+       <widget class="QLabel" name="set_angle_label">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>27</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>角度：</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="set_angle_line_edit">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>20</y>
+          <width>50</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="rotate_it_push_button">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>50</y>
+          <width>75</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>旋转</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="rescaling_group_box">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>180</y>
+         <width>120</width>
+         <height>97</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>3.缩放</string>
+       </property>
+       <widget class="QPushButton" name="rescaling_push_button">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>70</y>
+          <width>75</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>缩放</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="set_height_factor_line_edit">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>10</y>
+          <width>50</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1.0</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="set_height_factor_label">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>27</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>高度：</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="set_width_factor_line_edit">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>40</y>
+          <width>50</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1.0</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="set_width_factor_label">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>27</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>宽度：</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="binarisation_group_box">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>310</y>
+         <width>135</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>4.二值化</string>
+       </property>
+       <widget class="QPushButton" name="binarisation_push_button">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>75</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>二值化</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="deskew_group_box">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>400</y>
+         <width>115</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>5.去倾斜</string>
+       </property>
+       <widget class="QPushButton" name="deskew_push_button">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>75</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>去倾斜</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="denoise_group_box">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>480</y>
+         <width>135</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>6.去噪</string>
+       </property>
+       <widget class="QPushButton" name="despeckle_push_button">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>75</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>去斑点噪声</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="dilation_erosion_group_box">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>570</y>
+         <width>120</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>7.膨胀和腐蚀</string>
+       </property>
+       <widget class="QPushButton" name="dilation_push_button">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>75</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>膨胀</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="erosion_push_button">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>75</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>腐蚀</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="scanning_border_removal_group_box">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>660</y>
+         <width>115</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>8.文档边缘识别</string>
+       </property>
+       <widget class="QPushButton" name="scanning_border_removal_push_button">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>75</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>识别</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menu_bar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="men_file">
+    <property name="title">
+     <string>文件(&amp;F)</string>
+    </property>
+    <addaction name="action_open"/>
+    <addaction name="action_save"/>
+    <addaction name="action_save_as"/>
+   </widget>
+   <widget class="QMenu" name="menu_help">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="action_about"/>
+   </widget>
+   <addaction name="men_file"/>
+   <addaction name="menu_help"/>
+  </widget>
+  <widget class="QStatusBar" name="status_bar"/>
+  <action name="action_open">
+   <property name="text">
+    <string>打开(&amp;O)</string>
+   </property>
+  </action>
+  <action name="action_about">
+   <property name="text">
+    <string>关于</string>
+   </property>
+  </action>
+  <action name="action_save">
+   <property name="text">
+    <string>保存(&amp;S)</string>
+   </property>
+  </action>
+  <action name="action_save_as">
+   <property name="text">
+    <string>另存为(&amp;A)...</string>
+   </property>
+  </action>
  </widget>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
