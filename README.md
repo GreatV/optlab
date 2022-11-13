@@ -1,5 +1,7 @@
 # OPTLAB
 
+[![GitHub Super-Linter](https://github.com/GreatV/optlab/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 OCR前处理工具箱，基于Qt和Leptonica。
 
 ## 功能
