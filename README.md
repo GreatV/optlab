@@ -2,6 +2,8 @@
 
 [![GitHub Super-Linter](https://github.com/GreatV/optlab/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
+[![Star History Chart](https://api.star-history.com/svg?repos=GreatV/optlab&type=Date)](https://star-history.com/#GreatV/optlab&Date)
+
 OCR前处理工具箱，基于Qt和Leptonica。
 
 ## 功能
